@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
         resolver = this.getContentResolver();
 
         bangding();
-        words = ev_word.getText().toString();
+        Log.d("MyTag",words);
 
         btn_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                words = ev_word.getText().toString();
                 if (words.equals("")){
                     tv_word.setText("请输入单词");
                     tv_wordmeaning.setText("");
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                words = ev_word.getText().toString();
                 final TableLayout tableLayout = (TableLayout) getLayoutInflater().inflate(R.layout.insert,null);
                 new AlertDialog.Builder(MainActivity.this).setTitle("新增单词")
                         .setView(tableLayout)
@@ -127,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                words = ev_word.getText().toString();
                 String wordID = "";
                 if (tv_word.getText().toString().equals("")) {
                     Toast.makeText(MainActivity.this,"请先查询单词",Toast.LENGTH_SHORT).show();
@@ -177,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                words = ev_word.getText().toString();
                 final TableLayout tableLayout = (TableLayout) getLayoutInflater().inflate(R.layout.insert,null);
                 new AlertDialog.Builder(MainActivity.this).setTitle("修改单词")
                         .setView(tableLayout)
@@ -211,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         tv_word = findViewById(R.id.wordShow);
         tv_wordmeaning = findViewById(R.id.wordmeaningShow);
         tv_wordsample = findViewById(R.id.wordsampleShow);
-        ev_word = findViewById(R.id.word);
+        ev_word = findViewById(R.id.wordEdit);
         btn_add = findViewById(R.id.addWord);
         btn_check = findViewById(R.id.checkWord);
         btn_delete = findViewById(R.id.deleteWord);
